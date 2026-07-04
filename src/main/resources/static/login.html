@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="google-signin-client_id"
+          content="932946770951-cj5ahsob3dhgr0ld9j3hqhvt1n25agrv.apps.googleusercontent.com">
+    <style>
+        html
+        {
+            font-size: clamp(0.5rem, 1.1vw, 2rem);
+        }
+        p
+        {
+        font-size:0.75rem
+
+        }
+        .headerBar {
+            background-color: green;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: auto;
+            min-height:100px;
+            width: 95%;
+            max-width:900px;
+            background-color:green;
+        }
+
+        .headerDetails {
+            height: auto;
+            width: 30%;
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-start;
+        }
+
+        .headingText {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+        }
+
+        .descText {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .myCard {
+            display: block;
+            background-color: skyblue;
+            height: 80vh;
+            width: 30vw;
+            border-radius: 32px;
+
+        }
+
+        .blackcolor {
+            background-color: black;
+        }
+
+        .bodyContainer {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+
+        .midContentText {
+
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1rem;
+            font-weight: bold;
+
+        }
+
+
+
+        .responsive-small-text {
+            font-size: clamp(0.5rem, 1vw, 1rem);
+
+        }
+
+        .innerContainer {
+            background-color: brown;
+            width: clamp(3rem, 10vw, 10rm);
+            height: 100vh;
+
+        }
+
+        .mainContentCard {
+            padding: 10px;
+            height: auto;
+            width: 35vw;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+
+
+
+
+        }
+
+        .normalText {
+            text-emphasis-color: black;
+            color: grey;
+
+        }
+
+        .emailTextBox {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .continue-button {
+
+            background-color: green;
+            text-align: center;
+            color: white;
+            padding: 14px;
+            border-radius: 3px;
+            width: 25vw;
+
+        }
+
+        .customSignIn {
+            outline: 3px solid lightgrey;
+            height: 100px;
+            width: 150px;
+            background-color: white;
+            background-position: center;
+            background-size: cover;
+            padding: 10px;
+            border-radius: 1vw;
+
+        }
+
+        .customSignIn:hover {
+            outline: 3px solid green;
+        }
+
+        .common-btn{
+        background-color: green;
+        padding: 0.25em;
+        width: 25vw;
+        color:white;
+        border-radius:0.25rem;
+        border: 1px solid rgb(53,121,247);
+        font-size:1rem;
+        margin-top:0.75em;
+
+
+
+        }
+        .common-btn:focus{
+        outline: 2px solid lightblue;
+        }
+
+        .profile_container {
+            width: 4vw ;
+            height:4vw ;
+            background-color: orange;
+            border-radius: 32px;
+            background-position: center;
+            background-size: cover;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:2.5rem;
+            font-weight:bold;
+            font-family: 'Lora', serif;
+        }
+        .rightsReservedSection{
+                width:25vw;
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+                color:grey;
+                font-size:1rem;
+                margin-top:0.5em;
+
+        }
+        @media (max-width:630px)
+        {
+                  .rightsReservedSection{
+                width:25vw;
+                display:flex;
+                flex-direction: column;
+                align-items:center;
+                font-size:1rem;
+                color:grey;
+                margin-top:0.5em;
+
+        }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="headerBar">
+    <div class="headerDetails">
+        <div class="headingText">
+            TourSpot.com
+        </div>
+        <div class="descText responsive-small-text">Pakistan No.1 Tour Destination Site</div>
+
+    </div>
+    <div style="display: flex;flex-direction: column;align-items: center;">
+        <div class="profile_container" id="profile_circle">
+            S
+        </div>
+        <div class="mt-2">
+            <h6 id="profileText"></h6>
+        </div>
+
+    </div>
+</div>
+<div class="bodyContainer">
+    <div class="mainContentCard">
+        <div class="midContentText">
+            Sign in or Create an account with TourSpot.com
+        </div>
+        <div class="mt-3"> Sign with the Tour Spot account to access our services</div>
+        <form action="/doLogin" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+            <label class="normalText mt-3" for="username">Email Address</label>
+            <br>
+            <input type="text" id="username" name="username" style="width: 25vw;">
+            <br>
+            <label class="normalText mt-3" for="password">Password</label>
+            <br>
+            <input type="password" id="password" name="password" style="width: 25vw;">
+            <button class="common-btn" style="background-color: green; width: 25vw;" type="submit">Login
+            </button>
+        </form>
+
+        <div style="width:25vw;display: flex;flex-direction: row; justify-content: space-between;" class="mt-3">
+            <div>
+                <hr style="width: 10vw;height: 5vh">
+            </div>
+            <div>
+                or
+            </div>
+            <div>
+                <hr style="width: 10vw;height: 5vh">
+            </div>
+        </div>
+        <div>
+            <button class="common-btn"  id="createAccount">Create an Account</button>
+        </div>
+        <div class="rightsReservedSection">
+            <p class="descText">All Rights Reserved.</p>
+            <p class="descText">Copyright 2015</p>
+        </div>
+
+
+        <div id="g_id_onload"
+             data-client_id="932946770951-cj5ahsob3dhgr0ld9j3hqhvt1n25agrv.apps.googleusercontent.com"
+             data-callback="handleCredentialResponse">
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+<script>
+    let createAccountButton= document.getElementById("createAccount")
+    createAccountButton.addEventListener("click", function()
+    {
+    window.location.href=`/Registration.html`;
+    });
+
+    function handleCredentialResponse(response) {
+        const payload = JSON.parse(atob(response.credential.split(".")[1]))
+        console.log("The payload is ")
+        console.log(payload)
+        document.getElementById("profile_circle").style.backgroundImage = `url("${payload.picture}")`;
+        document.getElementById("profileText").textContent = `${payload.name}`
+        const user_details = {
+            "first_name": `${payload.given_name}`,
+            "last_name": `${payload.family_name}`,
+            "email": `${payload.email}`,
+            "address": "",
+            "phone_no": "",
+        }
+        console.log(user_details)
+        fetch("http://localhost:8080/api/v1/user/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user_details)
+            }
+        ).then(response => response.json()).then(
+            data => {
+                console.log("User registered Successfully.....")
+            }
+        )
+
+
+
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setCustomLogin();
+
+    })
+    function setCustomLogin() {
+        document.getElementById("apple").style.backgroundImage = "url('/images/customLogon/apple.png')"
+        document.getElementById("google").style.backgroundImage = "url('/images/customLogon/google.png')"
+        document.getElementById("facebook").style.backgroundImage = "url('/images/customLogon/facebook.png')"
+
+
+    }
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Tour Spot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        html {
+             font-size: clamp(0.20rem, 1.1vw, 0.85rem);
+             font-family: sans-serif;
+         }
+
+         h1 {
+             font-size: 2.5rem;
+         }
+
+         h2 {
+             font-size: 2rem;
+         }
+
+         h3 {
+             font-size: 1.75rem;
+         }
+
+         .h4 {
+             font-size: 1.5rem;
+         }
+         .h5
+         {
+             font-size: 1.5rem;
+         }
+         .h6{
+         font-size:1rem;
+         }
+
+         .p{
+             font-size: 0.25rem;
+         }
+
+   .left-side {
+       background-color: lightblue;
+   }
+
+   .left_side_container {
+
+       height: auto;
+       min-height:550px;
+       width: 100%;
+       border-radius: 16px;
+   }
+
+   .parent_dimens {
+       margin-top: 3vh;
+       height: auto;
+       min-height:550px;
+       width: 100vw;
+       --background-color:pink;
+
+   }
+   .row {
+    flex-wrap: nowrap;
+}
+
+   .right_side_container {
+       width: 100%;
+       display: flex;
+       align-items: flex-start ;
+      -- background-color:yellow;
+       justify-content:center;
+   }
+
+   .image_config {
+       object-position: center;
+       width: 100%;
+       height: 100%;
+       border-radius: 16px;
+   }
+   hr {
+    flex-shrink: 0;
+}
+
+   .card-config {
+
+       width: 75%;
+       height: auto;
+       min-height:300px;
+       border-radius: 12px;
+       border: 1px solid grey;
+       position: relative;
+       display: flex;
+       flex-direction: column;
+       justify-content: start;
+      -- background-color:blue;
+   }
+
+   /* .card-config:hover {
+       transform: translateY(-8px);
+       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+       cursor: pointer;
+
+   } */
+
+   .bottom-center {
+       display: flex;
+       flex-direction: column;
+   }
+
+   .review-card {
+       display: inline-block;
+       border-radius: 16px;
+       background-color: white;
+   }
+
+   .agencies_container {
+       width: 80vw;
+       height: auto;
+       min-height:200px;
+       overflow-x: auto;
+       display: flex;
+       /* Prevents shrinking/growing */
+       gap: 3rem;
+       margin-top: 2vh;
+   }
+
+   .agency-card {
+       margin: 2px;
+       height: auto;
+       min-height:200px;
+       width: 23vw;
+       flex: 0 0 auto;
+
+       /* Prevents shrinking/growing */
+       box-shadow: 0px 15px 12px rgba(0, 0, 0, 0.15);
+       transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+   }
+
+   .agency-card:hover {
+       transform: translateY(-8px);
+       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+   }
+
+   .agency-card-body {
+       padding: 3px;
+       display: flex;
+       flex-direction: column;
+       align-items: start;
+       height: 50%;
+   }
+
+   .agency-card-image {
+       height: 50%;
+       width: 100%;
+       object-position: center;
+       object-fit: cover;
+   }
+
+   .reviewBadge {
+       height: auto;
+       width: 100%;
+       display: flex;
+       justify-content: end;
+       align-items: center;
+       --background-color:red;
+
+   }
+
+   .small-text {
+
+       font-size: 30px;
+       /* Size of the font */
+       font-style: italic;
+       /* Style: normal | italic | oblique */
+       font-weight: bold;
+       text-align: center;
+   }
+
+   .imageGrid {
+       display: grid;
+       grid-template-rows: 1fr 1fr;
+       grid-template-columns: 2fr 1fr 1fr;
+       gap: 3px;
+       width: 100%;
+       height: 100%;
+       margin-left: 1em;
+
+   }
+
+   .imageGrid>div {
+       position: relative;
+       overflow: hidden;
+
+   }
+
+   .custom-body {}
+
+   .big {
+
+       grid-row: span 2;
+       background-color: green;
+   }
+
+   .imageGrid img {
+       object-fit: cover;
+       background-position: center;
+       width: 100%;
+       height: 100%;
+
+
+   }
+
+   .small:nth-child(2) {
+       grid-column: 2;
+       background-color: pink
+   }
+
+   .small:nth-child(3) {
+       grid-column: 2;
+       grid-row: 2;
+   }
+
+   .small:nth-child(4) {
+       grid-column: 3;
+       grid-row: 1;
+       background-color: blueviolet;
+   }
+
+   .small:nth-child(5) {
+       grid-column: 3;
+       background-color: coral;
+       grid-row: 2;
+   }
+
+   .small:nth-child(6) {
+       grid-column: 3;
+       grid-row: 2;
+
+
+   }
+
+   .textOnGrid {
+       position: absolute;
+       background: rgba(0, 0, 0, 0.6);
+       color: white;
+       padding: 0.5em 1em;
+       border-radius: 4px;
+       font-size: 14px;
+       width: 100%;
+       height: 100%;
+
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+       font-weight: bold;
+   }
+
+   .tr {
+       display: flex;
+       flex-direction: column;
+       justify-content: end;
+       margin-right: 1rem;
+       margin-top: 1.5rem;
+   }
+
+   .reviewRating {
+       color: white;
+       padding:0.5em;
+       margin-top: 2em;
+       height: auto;
+       width: 5vh;
+       background-color: green;
+       border-top-left-radius: 2px;
+       border-top-right-radius: 2px;
+       border-bottom-right-radius: 2px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   }
+
+   .carouselStyle {
+       height:auto;
+       min-height:100px;
+       width: 100%;
+       display: flex;
+       overflow-x: auto;
+       scroll-snap-type: x mandatory;
+   }
+
+   .carouselStyle::-webkit-scrollbar {
+       display: none;
+       /* Chrome/Safari hide scrollbar */
+   }
+
+   .carouselStyle>div {
+       flex: none;
+       width: 100%;
+       scroll-snap-align: center;
+   }
+
+   .carouselButtonLeft {
+       position: absolute;
+       margin-top: 150px;
+       margin-left: 10px;
+       height:auto;
+       min-height:20px;
+       width: 5vh;
+       border-radius: 100vw;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding:0.25rem;
+
+
+   }
+
+   .carouselButtonLeft:hover {
+       background-color: lightgrey;
+   }
+
+   .carouselButtonRight {
+       position: absolute;
+       margin-top: 150px;
+       margin-left: 250px;
+       height: auto;
+       min-height: 20px;
+       display: flex;
+       width: 5vh;
+       border-radius: 100vw;
+       justify-content: center;
+       align-items: center;
+       padding:0.25rem;
+   }
+
+   .carouselButtonRight:hover {
+       background-color: lightgrey;
+   }
+
+   .reviewBox {
+       height: auto;
+       width: 100%;
+       margin-left: 14vh;
+       margin-right: 14vh;
+       display: flex;
+       flex-direction: column;
+       justify-content: start;
+   }
+
+   .profile_icon {
+       margin-right: 1vw;
+       height: 30px;
+       width: 30px;
+       background-color: red;
+       border-radius: 1rem;
+   }
+
+   .a {
+       padding-left: 2vw;
+       margin: 2vh;
+       display: flex;
+       justify-content: start;
+       align-items: center;
+   }
+
+   .simpleText {
+       height: auto;
+       min-height:100px;
+       width: 100%;
+       padding-left: 3vw;
+       padding-right: 3vw;
+       white-space: normal;
+
+       /* allow wrapping */
+   }
+
+   .wrapText {
+       white-space: normal;
+       /* allow wrapping */
+       word-wrap: break-word;
+       /* break long words if needed */
+       overflow-wrap: break-word;
+   }
+
+   .regionSection {
+        height:auto;
+        min-height:50px;
+       width: 100%;
+       display: flex;
+       padding:1vw;
+       justify-content: start;
+       gap: 2vh;
+       --background-color:pink;
+   }
+
+   .amenityChip {
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+       align-items: center;
+       border: 1px solid grey;
+       padding: 0.25rem;
+       height: auto;
+       border-radius: 10px;
+       white-space: nowrap;
+       margin: 2vh;
+       gap: 0.4 rem;
+
+   }
+           .packageActivitySection {
+               display: flex;
+               flex-direction: column;
+               align-items: start;
+           }
+
+   .amenityChip:hover {
+       background-color: lightgrey;
+   }
+
+   .amenitiesBox {
+       height: auto;
+       min-height:100px;
+       width: 90vw;
+       margin: 2vw;
+       display: flex;
+       flex-wrap: wrap;
+
+   }
+
+   .icon {
+       width: 20px;
+       height: 20px;
+       fill: #333;
+       /* takes color from here */
+       margin: 4px;
+   }
+
+   .tourDesc {
+       position: relative;
+       margin-left: 4vw;
+       margin-right: 3vw;
+       width: 90vw;
+       font-family: Georgia, 'Times New Roman', Times, serif;
+       font-style: italic;
+
+
+   }
+
+   .blur-overlay {
+       position: absolute;
+       bottom: 0;
+       width: 100%;
+       height: 100px;
+       backdrop-filter: blur(8px);
+       /* blur the background behind */
+       -webkit-backdrop-filter: blur(8px);
+       /* Safari support */
+       background: rgba(255, 255, 255, 0.3);
+       /* frosted-glass effect */
+       color: black;
+       padding: 1rem;
+   }
+
+   .bookDetailTable {
+       margin-top: 5vh;
+       margin-left: 5vw;
+       width: 80vw;
+
+
+   }
+
+   .reserveButton {
+       display: inline-flex;
+       height: auto;
+       border-radius: 3vh;
+       background-color: green;
+       color: white;
+       align-items: center;
+       padding: 0.25rem;
+   }
+
+   .counterButton {
+       height: 4vh;
+       width: 5vw;
+       background-color: green;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 2vh;
+       margin-left: 2vw;
+       border-radius: 5vh;
+
+   }
+
+   .ReviewsSection {
+       margin-left: 4vw;
+       margin-top: 4vh;
+       display: flex;
+       flex-direction: column;
+       height:auto;
+       min-height:220px;
+
+   }
+
+   .progressBar {
+       width: 25vw;
+       height: 1vh;
+       border-radius: 22px;
+       overflow: hidden;
+       background-color: lightgrey;
+
+   }
+
+   .progressFill {
+       height: 100%;
+       background-color: green;
+   }
+
+   .progressConatinersBox {
+       width: 90vw;
+       height: auto;
+       min-height:150px;
+       display: flex;
+       flex-wrap: wrap;
+
+   }
+
+   .progressContainer {
+       width: 30vw;
+       height: 8vw;
+       padding: 2vh;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-evenly;
+       white-space: nowrap;
+
+   }
+   .tab_area{
+       width: 80vw;
+       height: 15vh;
+       margin-top: 10vh;
+       margin-left: 4vw;
+       display: flex;
+       justify-content: start;
+       align-items: center;
+
+   }
+   .tab_area >div {
+       height: 8vh;
+       width: 15vw;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       border-bottom: 1px solid grey ;
+   }
+   .tab_area >div:hover{
+       background-color: lightgrey
+   }
+   .site-footer {
+   background: #222;
+   color: #ddd;
+   padding: 40px 20px;
+   font-family: Arial, sans-serif;
+   }
+   .card-config hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #ccc;   /* or white if your background is dark */
+    flex-shrink: 0;               /* IMPORTANT */
+}
+
+   .footer-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   gap: 20px;
+   max-width: 1200px;
+   margin: auto;
+   }
+
+   .footer-section {
+   flex: 1 1 200px;
+   }
+
+   .footer-section h4 {
+   color: #fff;
+   margin-bottom: 10px;
+   }
+
+   .footer-section ul {
+   list-style: none;
+   padding: 0;
+   }
+
+   .footer-section ul li {
+   margin-bottom: 5px;
+   }
+
+.card-config hr {
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+   .footer-section ul li a {
+   color: #ddd;
+   text-decoration: none;
+   }
+
+   .footer-section ul li a:hover {
+   text-decoration: underline;
+   color: green;
+   }
+
+   .footer-bottom {
+   text-align: center;
+   padding: 10px;
+   margin-top: 20px;
+   border-top: 1px solid #444;
+   font-size: 14px;
+   }
+   .packagesSection {
+       margin-left: 4vw;
+       margin-top: 2vh;
+       display: flex;
+       flex-direction: column;
+       height: auto;
+       min-height:220px;
+       width: 90vw;
+
+   }
+                   .agency_img {
+               height: 2vw;
+               width: 3vw;
+               object-fit: cover;
+               background-position: center;
+               background-color:green;
+
+
+           }
+
+
+    </style>
+</head>
+
+<body class="custom-body">
+<div class="tab_area">
+    <div id="tab-overview">Overview</div>
+    <div id="tab-facilities">Facilities</div>
+    <div id="tab-packages">Packages</div>
+    <div id="tab-reviews">TourReviews</div>
+
+</div>
+<h1 id="overview">
+    <div id="destination_name"
+         style="margin-top: 4vh; font-family:Georgia, 'Times New Roman', Times, serif; margin-left: 4vw;">Taj Mahal,
+        India
+    </div>
+</h1>
+<div class="row parent_dimens">
+    <div class="col-md-8 mt-1 left_side_container">
+        <div class="imageGrid">
+            <div class="big">
+                <img  id="grid_image_one" />
+            </div>
+
+            <div class="small">
+                <img  id="grid_image_two" />
+            </div>
+
+            <div class="small">
+                <img  id="grid_image_three" />
+            </div>
+
+            <div class="small">
+                <img  id="grid_image_four" />
+            </div>
+
+            <div class="small">
+                <img  id="grid_image_five" />
+            </div>
+            <div class="small">
+                <div class="textOnGrid">
+                    <div>
+                        <h4>+33 Photos</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-4 mt-1 ms-1 pb-3 right_side_container">
+        <div class="card-config">
+            <div class="reviewBadge">
+                <div class="tr">
+                    <b style="font-size: 1rem;">Good</b>
+                    <p style="color: grey; font-size: 1rem;">20 reviews</p>
+                </div>
+                <div class="reviewRating">
+                    4.6
+                </div>
+            </div>
+            <hr>
+            <div class="carouselButtonRight" onclick="nextSlide()"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class=" carouselStyle" id="carouselStyleId">
+            </div>
+            <div class="carouselButtonLeft" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i></div>
+            <hr>
+            <div class="regionSection">
+                <i class="fa-solid fa-globe" style="margin-top: 2px;"></i>
+                <h6>Pakistan</h6>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+<div>
+    <div id="facilities">
+        <h3 style="margin-top: 3vh; font-family:Georgia, 'Times New Roman', Times, serif; margin-left: 2vw">
+            Facilities You Will Love</h3>
+    </div>
+    <div class="amenitiesBox">
+            <span class="amenityChip">
+                <i class="fa-solid fa-hotel" style="margin-right: 0.4rem;"></i>
+                Hotels
+            </span>
+        <span class="amenityChip">
+                <i class="fa-solid fa-house" style="margin-right: 0.4rem;"></i>
+                Homestays
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-restaurant"></use>
+                </svg>
+                Restaurants
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-stall"></use>
+                </svg>
+                Street Food Stalls
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-parking"></use>
+                </svg>
+                Parking facilities
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-parking"></use>
+                </svg>
+                Public Transport
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-parkingSpace"></use>
+                </svg>
+                Parking Facilities
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-handicraft"></use>
+                </svg>
+                Local handicrafts / Artisan stalls
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-helpdesk"></use>
+                </svg>
+                Helpdesk/ Information Centers
+            </span>
+        <span class="amenityChip">
+                <svg class="icon">
+                    <use href="icons.svg#icon-wifi"></use>
+                </svg>
+                Free Wifi
+            </span>
+
+    </div>
+    <div class="tourDesc">
+        <h5
+                style="margin-top: 2vw; margin-bottom: 2vw; font-weight:bold;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Feel Elevated at One of Monuments of the World</h5>
+        <div id="tourDescSection">
+        </div>
+    </div>
+    <div class="bookDetailTable" id="packages">
+        <table class="table table-stripped table-hover table-bordered">
+            <thead class="bg-success text-white">
+            <tr>
+                <th style="width: 40vw">Package Details</th>
+                <th style="width: 5vw;">Travel Agency</th>
+                <th style="width: 15vw;">Number of Tourists</th>
+                <th style="width: 15vw;">Price</th>
+                <th>Reservation</th>
+            </tr>
+
+            </thead>
+            <tbody id="table-body">
+<!--Here the table packages content will be appended -->
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="ReviewsSection" id="reviews">
+        <h4 style="font-family: Georgia, 'Times New Roman', Times, serif; "><b>Tourist Reviews</b></h4>
+        <div style="display: flex;justify-content: start; align-items:baseline;">
+            <div class="reviewRating">9.8</div>
+            <b style="font-size:large; margin-left: 2vw;">Good</b>
+            <p style="color: grey; font-size: 17px ;margin-left: 1vw;">20 reviews</p>
+        </div>
+        <h5 style="font-family: 'Times New Roman', Times, serif;margin-top: 6vh;font-weight:bold;">By Categories
+        </h5>
+        <div class="progressConatinersBox" id="categoryReviewsBoxId">
+
+
+        </div>
+
+
+
+
+    </div>
+    <div class="packagesSection" id="packagesSectionId">
+        <h4 style="font-family: Georgia, 'Times New Roman', Times, serif; "><b>Find the Perfect Getaway</b></h4>
+        <div class="container agencies_container" id="agencies_section">
+            <!-- <div class="agency-card" id="agency-card">
+                <img src="/agencies/airbnb.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/wego.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/bookingcom.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/expedia.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/ibibo.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/tripcom.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div>
+            <div class="agency-card">
+                <img src="/agencies/agoda.png" class="agency-card-image" />
+                <div class="agency-card-body">
+                    <h6 class="small-text">Air BnB</h6>
+                    <p><i class="fa-solid fa-heart"></i>Come Tour With Us Your lifes best trip awaiting you </p>
+
+                </div>
+
+            </div> -->
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+    function hideDisplayText() {
+                const params = new URLSearchParams(window.location.search)
+                const destId = params.get("id")
+                 let spotDescription=``
+                fetch(`http://localhost:8080/api/v1/detailedDesc?destId=${destId}`,
+                { method:"GET",
+                  headers:{
+                   'Content-type': "application/json"
+                  }
+
+                }).then(response =>{console.log(response.status);
+                return response.json();
+                }).then(body =>{
+                spotDescription = body.description
+                console.log("Following detailed description is going to be printed")
+                console.log(spotDescription)
+                let showFullText = false
+                let firstHalf = ''
+                let secondHalf = ''
+                let sentencesArray = spotDescription.split('\n')
+
+                let midPoint = (sentencesArray.length) / 2
+                for (let i = 0; i < midPoint; i++) {
+
+                    firstHalf += sentencesArray[i] + '\n'
+                }
+
+                let descSection = document.getElementById("tourDescSection")
+                descSection.innerText = firstHalf
+                let tourDescBox = document.getElementsByClassName("tourDesc")[0]
+                let showTextButton = document.createElement("button");
+                showTextButton.type = "button";
+                showTextButton.className = "btn btn-outline-success";
+                showTextButton.style.marginLeft = '35vw'
+
+                showTextButton.innerText = "Show More";
+                tourDescBox.append(showTextButton)
+                showTextButton.addEventListener("click", function () {
+                if (!showFullText) {
+                    for (let i = midPoint; i < sentencesArray.length; i++) {
+                        descSection.innerText += sentencesArray[i] + '\n'
+
+                    }
+                showTextButton.innerText = "Show Less"
+                showFullText = !showFullText
+                }
+                else {
+                descSection.innerText = firstHalf
+                showTextButton.innerText = "Show More"
+                showFullText = !showFullText
+                }
+        })
+
+      })
+        console.log(`Hide Display Text Called`)
+
+
+
+    }
+
+            function getCategoryReviews(id)
+        {
+
+            // getting the categoryReviews By DestinationId
+            let categoryReviewsBox= document.getElementById("categoryReviewsBoxId");
+            fetch(`http://localhost:8080/api/v1/categoryReviews?destId=${id}`,
+                {
+                    method: "GET",
+                    headers: {
+                        'Content-type': "application/json"
+                    }
+                }
+            ).then(response=>response.json())
+            .then(data =>{
+
+                data.forEach(ele =>{
+                console.log("the ele required for categeory_reviews is ")
+                let categoryReviewbarDiv= document.createElement("div");
+                categoryReviewbarDiv.className="progressContainer"
+                categoryReviewbarDiv.innerHTML=`
+                    <div style="display: flex;justify-content: start;align-items: center;">
+                        <svg class="icon">
+                            <use href="icons.svg#${ele.facility.iconName}"></use>
+                        </svg>
+                         <div style="font-size: 1rem;">${ele.facility.amenityName}</div>
+                    </div>
+                    <div class="progressBar">
+                        <div class="progressFill" id="progressFill-${ele.id}"></div>
+                    </div>
+                `
+                categoryReviewsBox.append(categoryReviewbarDiv);
+                let progressFillDiv= document.getElementById(`progressFill-${ele.id}`)
+                console.log(`The element rating Value is ${ele.ratingValue} `)
+                progressFillDiv.style.width=ele.ratingValue+ '%';
+                })
+
+
+
+            })
+
+
+        }
+
+
+
+    function displaySideAerrows(numberOfReviews) {
+        let reviewContainerNodes = document.querySelectorAll(".reviewBox")
+        let reviewNodeList = document.querySelectorAll(".reviewBox");
+        // making the observer for the review section
+        let observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        let currentVisibleindex = Array.from(reviewNodeList).indexOf(entry.target)
+
+                        if (currentVisibleindex == (numberOfReviews - 1)) {
+                            document.getElementsByClassName("carouselButtonRight")[0].style.display = "none";
+                            document.getElementsByClassName("carouselButtonLeft")[0].style.display = "";
+                        } else if (currentVisibleindex === 0) {
+                            document.getElementsByClassName("carouselButtonLeft")[0].style.display = "none";
+                            document.getElementsByClassName("carouselButtonRight")[0].style.display = "";
+                        } else {
+                            document.getElementsByClassName("carouselButtonLeft")[0].style.display = "";
+                            document.getElementsByClassName("carouselButtonRight")[0].style.display = "";
+
+                        }
+                        entry.target.classList.add("visible");
+
+                    }
+
+                });
+            },
+
+            {
+                root: document.querySelector(".carouselStyle"),
+                threshold: 0.5
+
+            });
+        reviewContainerNodes.forEach((item) => observer.observe(item))
+
+
+    }
+    function nextSlide() {
+
+        const carouselBox = document.querySelector(".carouselStyle")
+        carouselBox.scrollBy({
+            left: carouselBox.offsetWidth,
+            behavior: "smooth"
+        })
+
+    }
+    function prevSlide() {
+
+        const carouselBox = document.querySelector(".carouselStyle")
+        carouselBox.scrollBy({
+            left: -carouselBox.offsetWidth,
+            behavior: "smooth"
+        })
+
+    }
+
+
+
+
+    function drawRatingStars(rating,id) {
+        let starDiv = document.getElementById(`ratingStars-${id}`)
+        starDiv.style.paddingLeft = "3vw"
+        starDiv.style.display = "flex";
+        starDiv.style.justifyContent = "flex-start";
+        starDiv.style.marginLeft = "10px"
+        for (let i = 0; i < rating; i++) {
+            let starelement = document.createElement("div")
+            starelement.innerHTML = `<i class="fa-solid fa-star"></i>`
+            starDiv.append(starelement)
+        }
+
+    }
+
+
+    function printRating() {
+
+        const container = document.getElementById("rate-star")
+        const star_ele = document.createElement("i")
+        star_ele.className = "fa-solid fa-star";
+        for (let i = 0; i < 5; i++) {
+            const starClone = star_ele.cloneNode(true);
+            container.appendChild(starClone)
+        }
+    }
+
+    function getDestReviews(id)
+        {
+            // getting the reviews section
+            let reviewBox =document.getElementById("carouselStyleId");
+
+            // hittting the api
+            fetch(`http://localhost:8080/api/v1/reviews?destId=${id}`
+
+            ).then(response =>response.json()).then(
+                data =>{
+                    data.forEach(ele =>{
+                        let reviewBoxDiv=document.createElement("div");
+                        reviewBoxDiv.className="reviewBox";
+                        reviewBoxDiv.innerHTML=`
+                        <div class="a">
+                            <div class="profile_icon">
+                            </div>
+                            <div>
+                                <h6>${ele.reviewedBy.first_name+ele.reviewedBy.last_name}</h6>
+                            </div>
+                        </div>
+                        <div id="ratingStars-${ele.id}">
+                        </div>
+                        <div class="simpleText">
+                            <p style="color: black;" class="wrapText">${ele.reviewDescription}</p>
+                        </div>
+                        `;
+                        reviewBox.append(reviewBoxDiv)
+                        drawRatingStars(ele.reviewType.ratStar,ele.id)
+
+
+
+
+                    })
+                   displaySideAerrows(data.length);
+                }
+            )
+        }
+
+
+    function getDestDeatils()
+    {
+
+        const params = new URLSearchParams(window.location.search)
+        const id = params.get("id");
+        console.log("Get Dest Details Function Called")
+
+        // hitting the api request
+
+        fetch(`http://localhost:8080/api/v1/tourDestinationsAgencies?Id=${id}`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-type': "application/json"
+                }
+            }
+        ).then(response => response.json()).then(
+            data => {
+                // filling the images grid
+                let firstGridImage = document.getElementById("grid_image_one");
+                firstGridImage.src = data.destinationImages[0].imageURL
+                let secondGridImage = document.getElementById("grid_image_two");
+                secondGridImage.src = data.destinationImages[1].imageURL
+                let thirdGridImage = document.getElementById("grid_image_three");
+                thirdGridImage.src = data.destinationImages[2].imageURL
+                let fourthGridImage = document.getElementById("grid_image_four");
+                fourthGridImage.src = data.destinationImages[3].imageURL
+                let fifthGridImage = document.getElementById("grid_image_five");
+                fifthGridImage.src = data.destinationImages[4].imageURL
+
+                const dest_name = document.getElementById("destination_name")
+                dest_name.textContent = data.name
+                const agency_div = document.getElementById("agencies_section")
+                const params = new URLSearchParams(window.location.search)
+                const destId = params.get("id")
+                data.tourPackages.forEach(element =>
+                {
+                        const card_div = document.createElement("div");
+                        card_div.className = "agency-card";
+
+                        card_div.id = "${element.id}"
+                        card_div.innerHTML = `
+                 <img src="${element.pckgImg}" class="agency-card-image" />
+                    <div class="agency-card-body">
+                        <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">${element.name}</div>
+                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Enjoy
+                        ${element.description}</p>
+                        <!--travel persons and stay-->
+                        <div style="width:100%; display: flex; justify-content: space-between;padding: 1px;">
+                            <span style="display: flex;">
+                                <svg class="icon">
+                                    <use href="icons.svg#icon-parking"></use>
+                                </svg>
+                                <div
+                                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                    Travel</div>
+                            </span>
+                            <span style="display: flex;">
+                                <svg class="icon">
+                                    <use href="icons.svg#icon-user"></use>
+                                </svg>
+                                <div
+                                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                            ${element.noOfPersons} Persons</div>
+                            </span>
+                            <span style="display: flex;">
+                                <svg class="icon">
+                                    <use href="icons.svg#icon-hotel"></use>
+                                </svg>
+                                <div
+                                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                            ${element.stay}
+                                </div>
+                            </span>
+
+                        </div>
+                        <div style="font-family:'Times New Roman', Times, serif; margin-top: 2px;">Includes</div>
+                        <div class="packageActivitySection">
+                            <ul id="act-ul-${element.id}">
+                            </ul>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: space-between;">
+                            <div style="display: flex;width: 100%; ">
+                                <div
+                                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                    Offered By
+                                </div>
+                                <div class="agency_img"><img src="https://i.ibb.co/DPqw0CN3/2e0b43284536.png"
+                                        style="overflow: hidden;height: 100%; width: 100%;" /></div>
+                            </div>
+                            <div style="width: 100%; display: flex; ">
+                                <svg class="icon">
+                                    <use href="icons.svg#icon-price"></use>
+                                </svg>
+                                <div
+                                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                    Rs. ${element.price}
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                        `
+
+
+                        agency_div.appendChild(card_div);
+                        let activities_list = document.getElementById(`act-ul-${element.id}`)
+                        element.activities.forEach(act => {
+                        console.log(act.activityName)
+                            let list_item = document.createElement("li");
+                            list_item.innerHTML = `
+                            <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        ${act.activityName}</div>  `;
+                        activities_list.appendChild(list_item)
+                        })
+                        card_div.addEventListener("click",()=>{
+                        switchToBooking(destId,element.id);
+
+                        })
+                        updatePackagesTable(destId,element.id,element.description,element.noOfPersons,element.price)
+
+                    });
+
+
+
+
+            }
+
+        )
+        getCategoryReviews(id)
+        getDestReviews(id)
+
+    }
+
+    function bookAgency(id, destId) {
+        window.location.href = `/PackagesPage.html?agencyId=${id}&destId=${destId}`;
+
+    }
+            function scrollUsingTabs()
+        {
+            let tabs= document.querySelectorAll(".tab_area >div");
+            tabs.forEach(tab =>{
+                tab.addEventListener("click",()=>{
+                console.log("Teena Pienna")
+                console.log(tab)
+                    console.log(document.getElementById(tab.id.split('-')[1]))
+                    document.getElementById(tab.id.split('-')[1]).scrollIntoView({
+                        behavior:"smooth"
+                    })
+
+                })
+
+            })
+
+        }
+        function switchToBooking(destId,packgId)
+        {
+        console.log("Switch to booking called")
+        window.location.href=`http://localhost:8080/bookingScreen?destId=${destId}&packageId=${packgId}`
+        console.log("Api hit is complete")
+
+        }
+        function updatePackagesTable(destId,elementId,description, noOfPersons, price)
+        {
+        const tableBody=document.getElementById("table-body");
+        const tr= document.createElement("tr")
+        const descTd= document.createElement("td")
+        const agencyTd= document.createElement("td")
+        let  guestsTd= document.createElement("td")
+        const priceTd= document.createElement("td")
+        let ankle= document.createElement("a")
+        ankle.textContent=description
+        ankle.setAttribute("href","https://www.google.com/")
+        descTd.append(ankle)
+        agencyTd.textContent="Trivago.com"
+        guestsTd.innerHTML=`
+                    <div style="display: flex;justify-content: center;align-items: center;">
+                        <svg class="icon">
+                            <use href="icons.svg#icon-guests"></use>
+                        </svg>
+                        <div style="font-size: 12px;">${noOfPersons}</div>
+
+                    </div>
+
+                `
+        priceTd.innerHTML=`<div style="display: flex;flex-direction:column;justify-content: center;align-items: center;">
+                        <select>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        PKR-${price}
+                    </div>`
+        reserveButtonTd=document.createElement("td")
+        reserveButtonTd.innerHTML=`<button class="reserveButton" id=${elementId}>
+                        Reserve
+                    </button>`
+        tr.append(descTd)
+        tr.append(agencyTd)
+        tr.append(guestsTd)
+        tr.append(priceTd)
+        tr.append(reserveButtonTd)
+        tableBody.append(tr)
+
+        }
+
+
+        function setBookingListener()
+        {
+                const params = new URLSearchParams(window.location.search)
+                const destId = params.get("id")
+                const tableBody=document.getElementById("table-body")
+                tableBody.addEventListener("click",(e)=>{
+                        if(e.target.matches("button.reserveButton")){
+                            switchToBooking(destId,e.target.id);
+                        }
+
+
+
+                })
+
+
+        }
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        hideDisplayText();
+        getDestDeatils();
+        scrollUsingTabs();
+        setBookingListener();
+
+
+    })
+
+
+</script>
+</body>

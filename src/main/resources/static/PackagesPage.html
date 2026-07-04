@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+    <style>
+        .title-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .basic {
+            background-color: wheat;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+
+
+
+        }
+
+        .silver {
+            background-color: darkgray;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+
+
+
+        }
+
+        .gold {
+            background-color: goldenrod;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+
+
+        }
+        .basic:hover
+        {
+            transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+        }
+        .silver:hover
+        {
+            transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+        }
+        .gold:hover
+        {
+            transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+        }
+        .card-link{
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+
+        .parent-dimen {
+            height: 75vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+
+        }
+        .p_div{
+        display:flex;
+        flex-direction:column;
+        align-items:start;
+        }
+
+        .normal-text {
+            margin: 10px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .iconSize {
+            size: 20px;
+        }
+
+        .normalMargin {
+            margin-bottom: 30px;
+            display: flex;
+
+            gap:4rem;
+
+        }
+        .normaly-text
+        {
+           font-size: 15px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="title-text">
+        Choose Your Package Now!
+    </div>
+
+    <div class="row parent-dimen" id="parent-1">
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            getPackages();
+
+        })
+        function getPackages() {
+            const params = new URLSearchParams(window.location.search)
+            const agencyId = params.get("agencyId")
+            const destId=params.get("destId")
+            fetch(`http://localhost:8080/api/v1/packages?agencyId=${agencyId}&destId=${destId}`, {
+                method: "GET",
+                headers: {
+                    'Content-type': "application/json"
+                }
+
+            }).then(response => response.json()).then(
+                data => {
+                    const parent_div = document.getElementById("parent-1")
+                    data.forEach(element => {
+                        const touch_card_element=document.createElement("a")
+                        touch_card_element.href=`/RegistrationPage.html?packageId=${element.id}`;
+                        
+                        const card_div = document.createElement("div");
+                        myDict={
+                            1 :"basic",
+                            2 :"silver",
+                            3 : "gold"
+                        }
+                        const classn=myDict[element.type]
+                        //card_div.className = `col-md-3 ${classn}` ;
+                        touch_card_element.className = `col-md-3 ${classn} card-link` ;
+                        card_div.innerHTML = `
+                        <div class=p_div>
+                                    <div class="title-text" id="name">
+                                    ${element.name}
+
+            </div>
+            <div id="descrip">
+                <p class="normal-text">${element.description}</p>
+
+            </div>
+
+            <div id="noPersn" class="normalMargin">
+                <i class="fa-solid fa-person fa-2x"></i>
+               <p class="normal-text">${element.noOfPersons} Persons</p>
+            
+
+            </div>
+            <div id="noNight" class="normalMargin">
+                <i class="fa-solid fa-moon fa-2x"></i>
+               <p>${element.noOfNights} Nights</p>
+            
+
+
+            </div>
+            <div id="dinner" class="normalMargin">
+                <i class="fa-solid fa-utensils fa-2x"></i>
+               <p>${element.mealsDinners==true?"Meals & Dinner Provided" :"Meals & Dinner not available"} </p>
+                
+
+            </div>
+            <div id="dinner" class="normalMargin">
+                <i class="fa-solid fa-campground fa-2x"></i>
+               <p> ${element.camping==true?"Camping Available":"No Camping Available"}</p>
+           
+
+            </div>
+            <div id="dinner" class="normalMargin mt-">
+                <i class="fa-solid fa-tag fa-2x"></i>
+               <p> ${element.price} PKR</p>
+            
+
+            </div>
+            </div>
+                        `
+                        touch_card_element.appendChild(card_div)
+                        parent_div.appendChild(touch_card_element)
+
+
+                    });
+                }
+            )
+
+        }
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

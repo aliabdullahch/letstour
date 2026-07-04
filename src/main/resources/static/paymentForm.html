@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://js.stripe.com/clover/stripe.js"></script>
+</head>
+<body>
+<div id="checkout">
+    <!-- Checkout will insert the payment form here -->
+</div>
+
+<script>
+    // Initialize Stripe.js
+const stripe = Stripe('pk_test_51SOMvLLqe3opEh725iFjyNe0v5R99bwJbYMqWgj376uYt2JiQzvYsrnh76pIaeEClEBTt1JEHnEmBOEFwbiWNC3400tlsfJQWC');
+
+initialize();
+
+// Fetch Checkout Session and retrieve the client secret
+async function initialize() {
+  const fetchClientSecret = async () => {
+    const params = new URLSearchParams(window.location.search)
+    let destId = params.get("destId")
+    let packageId= params.get("packageId")
+    const response = await fetch(`http://localhost:8080/api/v1/create-checkout-session?destId=${destId}&packageId=${packageId}`, {
+      method: "POST",
+    });
+    const { clientSecret } = await response.json();
+    return clientSecret;
+  };
+
+  // Initialize Checkout
+  const checkout = await stripe.initEmbeddedCheckout({
+    fetchClientSecret,
+  });
+
+  // Mount Checkout
+  checkout.mount('#checkout');
+}
+</script>
+
+</body>
+</html>

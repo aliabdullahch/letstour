@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS with Popper (required for components like dropdowns, modals) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--For getting the javascript Calendar Library-->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
+
+
+
+    <title>Your Details</title>
+    <style>
+        html {
+            font-size: clamp(0.20rem, 1.1vw, 0.85rem);
+            font-family: sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        .h4 {
+            font-size: 1.5rem;
+        }
+        .h5
+        {
+            font-size: 1.5rem;
+        }
+
+        .p{
+            font-size: 1rem;
+        }
+
+        small {
+            font-size: 0.875rem;
+        }
+
+        .asidetag {
+            height: fit-content;
+            width: 30vw;
+            ----background-color: lightblue;
+
+            margin-left: 5vw;
+            padding: 1rem;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+
+        }
+
+        .progressBar {
+            height: auto;
+            min-height:40px;
+            width: 96vw;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            align-items: center;
+            --background-color: lightblue;
+            margin-left: 5vw;
+        }
+
+        .circleText {
+            height: 90%;
+            width: 20%;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+
+        }
+
+        .statusProfile {
+            height: auto;
+            min-height:30px;
+            width: 3vw;
+            background-color: red;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+
+        }
+
+        .statusText {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .linedimens {
+            width: 40vw;
+            height: 1vh;
+
+
+        }
+
+        .destinationCont {
+            height: 400px;
+            min-height: 400px;
+            width: 29vw;
+            border: 1px solid lightgrey;
+            border-radius: 1rem;
+            overflow: hidden;
+
+        }
+
+        .destImg {
+            height: 70%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+
+        }
+
+        .reviewBox {
+            width: 100%;
+            height: 20%;
+            ----background-color: red;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .destDesc {
+            width: 100%;
+            height: auto;
+            min-height: 30px;
+            --background-color: blue;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            padding: 1vw;
+
+        }
+
+        .priceCont {
+            width: 29vw;
+            height: auto;
+            min-height: 350px;
+            --background-color: green;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid lightgrey;
+
+        }
+
+        .locDesc {
+            height: 50%;
+            width: 100%;
+            ----background-color: yellow;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+        }
+
+        .likeBtn {
+            height: 100%;
+            width: 2vw;
+
+
+        }
+
+        .priceSection {
+            width: 100%;
+            height: 8%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            ----background-color: purple;
+
+        }
+
+        .mainPrice {
+            height: 23%;
+            width: 100%;
+            background-color: lightblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+        }
+
+        .priceDetail {
+            height: 10%;
+            width: 100%;
+            ----background-color: red;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            gap: 1rem;
+
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+            /* takes color from here */
+
+        }
+
+        .miscelCont {
+            height: auto;
+            min-height: 40px;
+            width: 29vw;
+            --background-color: blue;
+            border: 1px solid lightgrey;
+            border-radius: 1rem;
+        }
+
+        .loggedInInfo {
+            --height: 80%;
+            width: 98%;
+            ----background-color: lightpink;
+            border-radius: 1rem;
+            border: 1px solid lightgrey;
+            margin-top: 1rem;
+            padding: 2rem;
+            margin-left: 1rem;
+
+
+        }
+
+        .userdetails {
+            height: auto;
+            min-height: 30px;
+            width: 100%;
+            --background-color: lightcoral;
+            border-radius: 1rem;
+            padding: 0.5rem;
+            border: 1px solid lightgrey;
+
+
+
+        }
+
+        .combinedBody {
+            height: auto;
+            min-height: 800px;
+            width: 100vw;
+            display: grid;
+            grid-template-columns: 30vw 1fr;
+            gap: 4rem;
+            --background-color:yellow;
+
+
+        }
+
+        .profemail {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            height: 100%;
+            width: 100%;
+            gap: 1rem;
+            align-items: center;
+            
+            ----background-color: purple;
+            padding: 0.25rem;
+
+        }
+
+        .nameEmail {
+            height: 80%;
+            width: 70%;
+            ----background-color: purple;
+            display: flex;
+            flex-direction: column;
+
+
+            
+        }
+
+        .profile {
+             height: auto;
+            min-height: 35px;
+            width: 3vw;
+            background-color: lightgreen;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+
+        }
+
+        .loginform {
+            height: 50%;
+            width: 100%;
+            ----background-color: lightgrey;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 1rem;
+        }
+
+        .formName {
+            width: 45%;
+            height: 60%;
+            padding: 0.25rem;
+
+        }
+
+        .formNames {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0.5rem;
+        }
+
+        .normalText {
+            font-size: 1.25rem;
+            text-emphasis-color: black;
+            color: black;
+
+        }
+
+        .formElement {
+            width: 45%;
+            height: 20%;
+            padding-left: 0.5rem;
+            ----background-color: yellow;
+            align-items: center;
+
+        }
+
+        .textCheckBox {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            height: 50%;
+            width: 100%;
+            ----background-color: green;
+        }
+    </style>
+
+</head>
+
+<body style="overflow:true">
+    <div class="progressBar">
+        <div class="circleText">
+            <div class="statusProfile" style="background-color: green;">✓</div>
+            <h4 class="statusText">Your Selection</h4>
+        </div>
+        <hr style="width: 24vw;height: 1px;">
+
+        <div class="circleText">
+            <div class="statusProfile" style="background-color: green;">2</div>
+            <h4 class="statusText">Your Details</h4>
+        </div>
+
+
+        <hr style="width: 24vw;height: 1px">
+
+        <div class="circleText">
+            <div class="statusProfile" style="background-color: green;">3</div>
+            <h4 class="statusText">Final Payment</h4>
+        </div>
+
+    </div>
+    <div class="combinedBody">
+        <aside class="asidetag">
+            <div class="destinationCont">
+                <img src="TAJ1.jpg" class="destImg" id="pckg_img" />
+                <div class="destDesc">
+                    <div class="reviewBox">
+                        <div class="starClass" id="pckg_star">
+                            <img src="star.png" style="height: 20px;" />
+                            <img src="star.png" style="height: 20px;" />
+                            <img src="star.png" style="height: 20px;" />
+
+                        </div>
+                        <div class="likeBtn">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </div>
+
+
+                    </div>
+                    <h5 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight:bold;" id="pckg_name">Taj Mahal
+                    </h5>
+                    <div class="locDesc" id="pckg_desc">
+                        Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh, India
+                    </div>
+
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+            <div class="priceCont">
+                <h3 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">Your price
+                    summary
+                </h3>
+                <div class="priceSection">
+                    <p>Original Price</p>
+                    <p id="pckg_og">PKR-112,000</p>
+                </div>
+                <div class="priceSection">
+                    <p>Discounted Price</p>
+                    <p id="pckg_dp">PKR 34,000</p>
+                </div>
+                <div class="priceSection" id="discount_perc">
+                </div>
+                <hr />
+                <div class="mainPrice">
+                    <div style="display: flex;justify-content: end; height:20%;width: 100%;">
+                        <h5 style="color: RED;"><s id="cutPrice">PKR-34,000</s></h5>
+                    </div>
+                    <div style="display: flex;justify-content: space-between;height:fit-content ;width: 100%;">
+                        <h4 style="font-family:sans-serif; font-weight: 700;">Price</h4>
+                        <h4 style="font-family:sans-serif; font-weight: 700;" id="pckg_np">PKR 78,000</h4>
+                    </div>
+                    <div style="display: flex;justify-content: end; height:20%;width: 100%;">
+                        +PKR 6000 taxes and fees
+                    </div>
+                </div>
+                <hr />
+                <h3 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">Price
+                    information
+                </h3>
+                <div class="priceSection">
+                    <svg class="icon">
+                        <use href="icons.svg#icon-price"></use>
+                    </svg>
+                    <p>Excludes PKR-6026 in taxes and fees</p>
+                </div>
+                <div class="priceSection">
+                    <p style="color: grey;">16% Tax</p>
+                    <p style="color: grey;">PKR-6026</p>
+                </div>
+
+
+
+
+            </div>
+            <!--payment schedule-->
+            <div class="miscelCont">
+                <h4 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">Your payment
+                    schedule
+                </h4>
+                <div style="width: 100%; height: 10%; padding: 1rem;">
+                    <p style="color: green;">No payment Today. You will pay when you will stay</p>
+                </div>
+
+
+            </div>
+            <!--cancel penalties-->
+            <div class="miscelCont">
+                <h4 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">How much will
+                    it cost to cancel?
+                </h4>
+                <div style="width: 100%; height: 10%; padding: 1rem;">
+                    <p>No penalties in case of cancelling the booking before a week or two!</p>
+                </div>
+
+
+            </div>
+            <!--loyalty program-->
+            <div class="miscelCont">
+                <h4 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">Your booking
+                    matters!
+                </h4>
+                <div style="width: 100%; height: 10%; padding: 1rem;">
+                    <p>Each booking accounts for your points towards loyalty program. <strong
+                            style="color: darkgreen;font-family: 'Courier New', Courier, monospace;font-weight:700;font-size: 1.5rem;">Devoto</strong>
+                    </p>
+                </div>
+
+
+            </div>
+        </aside>
+        <main class="loggedInInfo">
+            <div class="userdetails">
+                <div class="profemail">
+                    <div class="profile">A</div>
+                    <div class="nameEmail">
+                        <h5>You are signed in as</h5>
+                        <p>aliabdullahch2001@gmail.com</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <h4 style=" font-weight: bold;margin: 1rem;font-family: 'Times New Roman', Times, serif;">Enter Your details
+            </h4>
+            <p style="margin-left: 1vw;">Just Enter your details in the (*) required fiels</p>
+            <div class="loginform">
+
+                    <input type="hidden" name="destId" value="dest" id="hidden_destId">
+                    <input type="hidden" name="packageId" value="pack" id="hidden_packageId">
+                    <div class="formNames mt-2">
+                        <div class="formName">
+                            <label class="normalText mb-3 mt-2" for="first_name">First Name (<span
+                                    style="color: red;">*</span>)</label>
+                            <span style="color:red;margin-left:1vw;display:none" id="firstName_">First Name is required</span>
+                            <br>
+                            <input type="text" id="first_name" name="firstName" style="width: 25vw;">
+                        </div>
+                        <div class="formName">
+                            <label class="normalText mt-2 mb-3" for="last_name">Last Name (<span
+                                    style="color: red;">*</span>)</label>
+                            <span style="color:red;margin-left:1vw;display:none" id="lastName_">Last Name is required</span>
+                            <br>
+                            <input type="text" id="last_name" name="lastName" style="width: 25vw;">
+                        </div>
+                    </div>
+                    <div class="formElement mt-2">
+                        <label class="normalText mt-2 mb-2" for="email">Email address (<span
+                                style="color: red;">*</span>)</label>
+                        <span style="color:red;margin-left:1vw;display:none" id="email_">Email  is required</span>
+                        <br>
+                        <input type="email" id="email" name="email" style="width: 25vw;">
+                    </div>
+                    <div class="formElement mt-2">
+                        <label for="country" class="normalText mt-2 mb-3">Country/Region</label>
+                        <br>
+                        <select id="country" style="width: 25vw;" name="country">
+                            <option selected disabled>Select your country</option>
+                            <option value="PK">Pakistan</option>
+                            <option value="IN">India</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                    <div class="formElement mt-2">
+                        <label class="normalText mt-2 mb-2" for="phone_no">Phone No (<span
+                                style="color: red;">*</span>)</label>
+                        <span style="color:red;margin-left:1vw;display:none" id="phoneNo_">Phone No is required</span>
+                        <br>
+                        <div style="width: 100%;display: flex;flex-direction: row;">
+                            <br>
+                            <select id="countryCode" name="countryCode" style="width: 10vw">
+                                <option selected disabled>Phone code</option>
+                                <option value="+1">🇺🇸 United States (+1)</option>
+                                <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                                <option value="+61">🇦🇺 Australia (+61)</option>
+                                <option value="+91">🇮🇳 India (+91)</option>
+                                <option value="+92">🇵🇰 Pakistan (+92)</option>
+                                <option value="+81">🇯🇵 Japan (+81)</option>
+                                <option value="+86">🇨🇳 China (+86)</option>
+                                <option value="+49">🇩🇪 Germany (+49)</option>
+                                <option value="+33">🇫🇷 France (+33)</option>
+                                <option value="+39">🇮🇹 Italy (+39)</option>
+                                <option value="+34">🇪🇸 Spain (+34)</option>
+                                <option value="+7">🇷🇺 Russia (+7)</option>
+                                <option value="+82">🇰🇷 South Korea (+82)</option>
+                                <option value="+971">🇦🇪 United Arab Emirates (+971)</option>
+                                <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+                                <option value="+20">🇪🇬 Egypt (+20)</option>
+                                <option value="+27">🇿🇦 South Africa (+27)</option>
+                                <option value="+55">🇧🇷 Brazil (+55)</option>
+                                <option value="+52">🇲🇽 Mexico (+52)</option>
+                                <option value="+60">🇲🇾 Malaysia (+60)</option>
+                                <option value="+65">🇸🇬 Singapore (+65)</option>
+                                <option value="+63">🇵🇭 Philippines (+63)</option>
+                                <option value="+62">🇮🇩 Indonesia (+62)</option>
+                                <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+                                <option value="+64">🇳🇿 New Zealand (+64)</option>
+                                <option value="+41">🇨🇭 Switzerland (+41)</option>
+                                <option value="+46">🇸🇪 Sweden (+46)</option>
+                                <option value="+31">🇳🇱 Netherlands (+31)</option>
+                                <option value="+32">🇧🇪 Belgium (+32)</option>
+                                <option value="+90">🇹🇷 Turkey (+90)</option>
+                                <option value="+354">🇮🇸 Iceland (+354)</option>
+                                <option value="+48">🇵🇱 Poland (+48)</option>
+                                <option value="+420">🇨🇿 Czech Republic (+420)</option>
+                                <option value="+421">🇸🇰 Slovakia (+421)</option>
+                                <option value="+43">🇦🇹 Austria (+43)</option>
+                                <option value="+47">🇳🇴 Norway (+47)</option>
+                                <option value="+45">🇩🇰 Denmark (+45)</option>
+                                <option value="+358">🇫🇮 Finland (+358)</option>
+                                <option value="+351">🇵🇹 Portugal (+351)</option>
+                                <option value="+36">🇭🇺 Hungary (+36)</option>
+                                <option value="+40">🇷🇴 Romania (+40)</option>
+                                <option value="+353">🇮🇪 Ireland (+353)</option>
+                                <option value="+380">🇺🇦 Ukraine (+380)</option>
+                                <option value="+48">🇵🇱 Poland (+48)</option>
+                                <option value="+66">🇹🇭 Thailand (+66)</option>
+                                <option value="+65">🇸🇬 Singapore (+65)</option>
+                                <option value="+95">🇲🇲 Myanmar (+95)</option>
+                                <option value="+84">🇻🇳 Vietnam (+84)</option>
+                                <option value="+974">🇶🇦 Qatar (+974)</option>
+                                <option value="+968">🇴🇲 Oman (+968)</option>
+                                <option value="+961">🇱🇧 Lebanon (+961)</option>
+                                <option value="+962">🇯🇴 Jordan (+962)</option>
+                                <option value="+964">🇮🇶 Iraq (+964)</option>
+                                <option value="+98">🇮🇷 Iran (+98)</option>
+                            </select>
+                            <input type="phoneNo" id="phone_no" name="phoneNo" style="width: 25vw;">
+                        </div>
+                    </div>
+                    <div class="formElement mt-2">
+                        <div class="textCheckBox">
+                            <input type="checkbox" id="pc" name="paperlessConfirm" style="width: 3vw;height: 20px;">
+                            <label class="mb-2" for="pc">Ensure to Use Paperless Confirmation </label>
+
+                        </div>
+                        <div class="textCheckBox">
+                            <input type="checkbox" id="updt_acc" name="updt_acc" style="width: 3vw;height: 20px;">
+                            <label class="mb-2" for="updt_acc">Update my account to include these details </label>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div style="height:10%; width: 45%; ">
+                        <span>Are you travelling for your work? (<span style="color: grey;">Optional</span>)</span>
+                        <br />
+                        <div style="width: 100%; height: 7%; display: flex; flex-direction: row;gap: 3rem;" class="mt-3">
+                            <div >
+                                <input type="radio" name="travelForWork" id="travwork"  />
+                                <label for="travwork" value="yes">Yes</label>
+
+                            </div>
+                            <div>
+                                <input type="radio" name="travelForWork" id="travworkNo" />
+                                <label for="travworkNo" value="no">No</label>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <button class="btn btn-primary mt-5" style="background-color: green; width: 25vw;"
+                        type="submit" id="submit_btn">Reserve</button>
+
+
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+<script>
+    function displayPackageDetails()
+    {
+    // taking out the query parameters
+    const params = new URLSearchParams(window.location.search)
+    let destId = params.get("destId")
+    let packageId= params.get("packageId")
+    fetch(`http://localhost:8080/api/v1/tourPackageDest?destId=${destId}&packageId=${packageId}`,
+           {
+                method: "GET",
+                headers: {
+                    'Content-type': "application/json"
+                }
+            }).then(response =>response.json())
+            .then(data =>{
+            console.log("Going to parse  the data")
+            let pckgImage=document.getElementById("pckg_img")
+            // updating the package image
+            pckgImage.src=data.pckgImg
+            // updating the pacakage  name
+            let pckgName=document.getElementById("pckg_name")
+            pckgName.textContent=data.name
+            // updating the package descritpion
+            let pckgDesc= document.getElementById("pckg_desc")
+            pckgDesc.textContent=data.description
+            // setting up the package prices ------
+            // setting the discounted amount
+            let discountedPercentage=0.35
+            let discountedPrice=data.price-(discountedPercentage *data.price)
+            // updating the package original price
+            let origPrice =document.getElementById("pckg_og")
+            origPrice.textContent=data.price
+            // updating the package discounted price
+            let discountPrice = document.getElementById("pckg_dp")
+            discountPrice.textContent= discountedPrice
+            // updating the net price
+            let netPrice=document.getElementById("pckg_np")
+            netPrice.textContent=`PKR ${discountedPrice}`
+            // updating the cutted price
+            let cutPrice= document.getElementById("cutPrice")
+            cutPrice.textContent=`PKR ${0.35*data.price}`
+            // updating the dicount percentage
+            let discountPercentage=document.getElementById("discount_perc")
+            discountPercentage.innerHTML=`<p>
+            Enjoy Flat <span style="color:green;">${discountedPercentage*100}%</span> discount on Booking Now
+            </p>`
+            let hidden_destId=document.getElementById("hidden_destId")
+            let hidden_package_Id=document.getElementById("hidden_packageId")
+            hidden_destId.value=destId
+            hidden_package_Id.value=packageId
+
+
+
+
+
+
+
+
+            })
+    }
+    function reserveBooking ()
+    {
+         document.getElementById("submit_btn").addEventListener("click", function (event) {
+  event.preventDefault(); // prevents the default form submit behavior
+      const params = new URLSearchParams(window.location.search)
+    let destId = params.get("destId")
+    let packageId= params.get("packageId")
+
+  const firstName = document.getElementById("first_name").value;
+  const lastName  = document.getElementById("last_name").value;
+  const email     = document.getElementById("email").value;
+  const phoneNo   = document.getElementById("phone_no").value;
+  const country   = document.getElementById("country").value;
+
+  const formData = new URLSearchParams({
+    firstName,
+    lastName,
+    email,
+    phoneNo,
+    country,
+    destId,
+    packageId
+  });
+
+  fetch("http://localhost:8080/api/v1/createBooking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: formData.toString()
+  })
+  .then( async response =>{
+
+  var responseBody = await response.json();
+  console.log(`The response body is ${responseBody}`)
+  return {status: response.status,responseBody}
+  })
+  .then(({status,responseBody}) => {
+    console.log(`The unified status is ${status}`)
+    console.log(`The unified body is ${responseBody}`)
+    if (status ===400)
+    {
+    console.log("Checking out all  the response Keys")
+    for (const key of Object.keys(responseBody)){
+    console.log(key)
+    let ele= document.getElementById(`${key}_`)
+    if(ele)
+    {
+    ele.style.display=""
+    }
+    else
+    {
+    console.log(`${ele} not found in the DOM`)
+    }
+    }
+    }else
+    {
+    window.location.href=`/paymentForm.html?destId=${destId}&packageId=${packageId}`;
+    }
+
+
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+});
+
+
+    }
+document.addEventListener("DOMContentLoaded", function () {
+    displayPackageDetails();
+    reserveBooking();
+})
+
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
